@@ -1,0 +1,8 @@
+5 juil. 2011 15:21:21 net.minecraft.src.ModLoader init
+FIN: ModLoader Beta 1.6.6 Initializing...
+5 juil. 2011 15:21:21 net.minecraft.src.ModLoader readFromClassPath
+PLUS FIN: Adding mods from /home/kevin/Bureau/mcp41/bin/minecraft
+5 juil. 2011 15:21:21 net.minecraft.src.ModLoader readFromClassPath
+PLUS FIN: Directory found.
+5 juil. 2011 15:21:21 net.minecraft.src.ModLoader AddAllRenderers
+FIN: Initialized

@@ -1,0 +1,8 @@
+5 juil. 2011 17:08:15 net.minecraft.src.ModLoader init
+FIN: ModLoader Beta 1.6.6 Initializing...
+5 juil. 2011 17:08:15 net.minecraft.src.ModLoader readFromClassPath
+PLUS FIN: Adding mods from /home/kevin/Bureau/eclipse/HavreCube/bin
+5 juil. 2011 17:08:15 net.minecraft.src.ModLoader readFromClassPath
+PLUS FIN: Directory found.
+5 juil. 2011 17:08:15 net.minecraft.src.ModLoader AddAllRenderers
+FIN: Initialized
