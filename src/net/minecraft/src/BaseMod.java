@@ -38,9 +38,10 @@ public abstract class BaseMod
     {
     }
 
-    public void GenerateSurface(World world, Random random, int i, int j)
-    {
-    }
+   public void GenerateSurface(World world, Random random, int i, int j)
+   {
+	   
+   }
 
     public void KeyboardEvent(KeyBinding keybinding)
     {

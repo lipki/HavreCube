@@ -124,6 +124,15 @@ public class EntitySheep extends EntityAnimal
         return random.nextInt(500) != 0 ? 0 : 6;
     }
 
+    public boolean interact(EntityPlayer entityplayer)
+    {
+    	if(entityplayer.getCurrentEquippedItem()==null)
+    	{
+    		entityplayer.mountEntity(this);
+    	}
+    	return true;
+    }
+    
     public static final float fleeceColorTable[][] = {
         {
             1.0F, 1.0F, 1.0F

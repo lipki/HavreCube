@@ -1094,6 +1094,10 @@ public abstract class Entity
     {
     }
 
+    public void setInPortalHavreCube()
+    {
+    }
+
     public void setVelocity(double d, double d1, double d2)
     {
         motionX = d;

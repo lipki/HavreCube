@@ -338,6 +338,15 @@ public class EntityRenderer
             GL11.glScalef(1.0F / f3, 1.0F, 1.0F);
             GL11.glRotatef(-((float)rendererUpdateCount + f) * 20F, 0.0F, 1.0F, 1.0F);
         }
+        float f4 = mc.thePlayer.prevTimeInPortalHavreCube + (mc.thePlayer.timeInPortalHavreCube - mc.thePlayer.prevTimeInPortalHavreCube) * f;
+        if(f4 > 0.0F)
+        {
+            float f5 = 5F / (f4 * f4 + 5F) - f4 * 0.04F;
+            f5 *= f5;
+            GL11.glRotatef(((float)rendererUpdateCount + f) * 20F, 0.0F, 1.0F, 1.0F);
+            GL11.glScalef(1.0F / f5, 1.0F, 1.0F);
+            GL11.glRotatef(-((float)rendererUpdateCount + f) * 20F, 0.0F, 1.0F, 1.0F);
+        }
         orientCamera(f);
     }
 
@@ -631,7 +640,7 @@ public class EntityRenderer
             renderglobal.renderClouds(f);
             GL11.glDisable(2912 /*GL_FOG*/);
             setupFog(1, f);
-            if(cameraZoom == 1.0D)
+            if(cameraZoom == 2.0D)
             {
                 GL11.glClear(256);
                 func_4135_b(f, i);

@@ -91,6 +91,33 @@ public class EntityPlayerSP extends EntityPlayer
                 timeInPortal = 0.0F;
             }
         }
+        prevTimeInPortalHavreCube = timeInPortalHavreCube;
+        if(inPortalHavreCube) {
+            if(!worldObj.multiplayerWorld && ridingEntity != null)
+                mountEntity(null);
+            
+            if(mc.currentScreen != null)
+                mc.displayGuiScreen(null);
+                
+            if(timeInPortalHavreCube == 0.0F)
+                mc.sndManager.playSoundFX("portal.trigger", 1.0F, rand.nextFloat() * 0.4F + 0.8F);
+            
+            timeInPortalHavreCube += 0.0125F;
+            if(timeInPortalHavreCube >= 1.0F) {
+                timeInPortalHavreCube = 1.0F;
+                if(!worldObj.multiplayerWorld) {
+                    field_28024_y = 10;
+                    mc.sndManager.playSoundFX("portal.travel", 1.0F, rand.nextFloat() * 0.4F + 0.8F);
+                    mc.usePortalHavreCube();
+                }
+            }
+            inPortalHavreCube = false;
+        } else {
+            if(timeInPortalHavreCube > 0.0F)
+                timeInPortalHavreCube -= 0.05F;
+            if(timeInPortalHavreCube < 0.0F)
+                timeInPortalHavreCube = 0.0F;
+        }
         if(field_28024_y > 0)
         {
             field_28024_y--;

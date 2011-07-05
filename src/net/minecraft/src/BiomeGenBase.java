@@ -217,6 +217,7 @@ public class BiomeGenBase
     public static final BiomeGenBase tundra = (new BiomeGenBase()).setColor(0x57ebf9).setBiomeName("Tundra").setEnableSnow().func_4124_a(0xc4d339);
     public static final BiomeGenBase hell = (new BiomeGenHell()).setColor(0xff0000).setBiomeName("Hell").setDisableRain();
     public static final BiomeGenBase sky = (new BiomeGenSky()).setColor(0x8080ff).setBiomeName("Sky").setDisableRain();
+    public static final BiomeGenBase havrecube = (new BiomeGenHavreCube()).setColor(0x08fa36).setBiomeName("HavreCube").setDisableRain();
     public String biomeName;
     public int color;
     public byte topBlock;

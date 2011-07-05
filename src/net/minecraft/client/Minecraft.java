@@ -4,10 +4,12 @@
 
 package net.minecraft.client;
 
+
 import java.awt.*;
 import java.io.File;
 import java.io.PrintStream;
 import net.minecraft.src.*;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.*;
 import org.lwjgl.opengl.*;
@@ -247,9 +249,9 @@ public abstract class Minecraft
     public static File getMinecraftDir()
     {
         //if(minecraftDir == null)
-        //{
+        {
             minecraftDir = getAppDir("minecraft");
-       // }
+        }
         return minecraftDir;
     }
 
@@ -1291,6 +1293,57 @@ public abstract class Minecraft
         }
     }
 
+    public void usePortalHavreCube()
+    {
+        System.out.println("Toggling dimension!!");
+        if(thePlayer.dimension == -2)
+        {
+            thePlayer.dimension = 0;
+        } else
+        {
+            thePlayer.dimension = -2;
+        }
+        theWorld.setEntityDead(thePlayer);
+        thePlayer.isDead = false;
+        double d = thePlayer.posX;
+        double d1 = thePlayer.posZ;
+        if(thePlayer.dimension == -2)
+        {
+        	mod_HavreCube.surfaceX = d;
+        	mod_HavreCube.surfaceZ = d1;
+        	mod_HavreCube.Time = theWorld.worldInfo.getWorldTime();
+            d = 2.5;
+            d1 = 1.5;
+            thePlayer.setLocationAndAngles(d, thePlayer.posY, d1, thePlayer.rotationYaw, thePlayer.rotationPitch);
+            if(thePlayer.isEntityAlive())
+            {
+                theWorld.updateEntityWithOptionalForce(thePlayer, false);
+            }
+            World world = null;
+            world = new World(theWorld, WorldProvider.getProviderForDimension(-2));
+            changeWorld(world, "I'm in peace", thePlayer);
+        } else {
+            d = mod_HavreCube.surfaceX;
+            d1 = mod_HavreCube.surfaceZ;
+        	theWorld.worldInfo.setWorldTime(mod_HavreCube.Time);
+            thePlayer.setLocationAndAngles(d, thePlayer.posY, d1, thePlayer.rotationYaw, thePlayer.rotationPitch);
+            if(thePlayer.isEntityAlive())
+            {
+                theWorld.updateEntityWithOptionalForce(thePlayer, false);
+            }
+            World world1 = null;
+            world1 = new World(theWorld, WorldProvider.getProviderForDimension(0));
+            changeWorld(world1, "Facing reality", thePlayer);
+        }
+        thePlayer.worldObj = theWorld;
+        if(thePlayer.isEntityAlive())
+        {
+            thePlayer.setLocationAndAngles(d, thePlayer.posY, d1, thePlayer.rotationYaw, thePlayer.rotationPitch);
+            theWorld.updateEntityWithOptionalForce(thePlayer, false);
+            //(new Teleporter()).func_4107_a(theWorld, thePlayer);
+        }
+    }
+
     public void changeWorld1(World world)
     {
         changeWorld2(world, "");
@@ -1479,6 +1532,10 @@ public abstract class Minecraft
         if(!theWorld.multiplayerWorld && !theWorld.worldProvider.canRespawnHere())
         {
             usePortal();
+        }
+        if(!theWorld.multiplayerWorld && !theWorld.worldProvider.canRespawnHere())
+        {
+            usePortalHavreCube();
         }
         ChunkCoordinates chunkcoordinates = null;
         ChunkCoordinates chunkcoordinates1 = null;

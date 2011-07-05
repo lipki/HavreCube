@@ -84,11 +84,16 @@ public class SaveHandler
 
     public IChunkLoader getChunkLoader(WorldProvider worldprovider)
     {
-        if(worldprovider instanceof WorldProviderHell)
+    	if(worldprovider instanceof WorldProviderHell)
         {
             File file = new File(saveDirectory, "DIM-1");
             file.mkdirs();
             return new ChunkLoader(file, true);
+        } else if(worldprovider instanceof WorldProviderHavreCube)
+        {
+            File file1 = new File(saveDirectory, "DIM-2");
+            file1.mkdirs();
+            return new ChunkLoader(file1, true);
         } else
         {
             return new ChunkLoader(saveDirectory, true);

@@ -31,6 +31,7 @@ public abstract class EntityPlayer extends EntityLiving
         swingProgressInt = 0;
         field_28024_y = 20;
         inPortal = false;
+        inPortalHavreCube = false;
         damageRemainder = 0;
         fishEntity = null;
         inventorySlots = new ContainerPlayer(inventory, !world.multiplayerWorld);
@@ -936,6 +937,19 @@ public abstract class EntityPlayer extends EntityLiving
         }
     }
 
+    public void setInPortalHavreCube()
+    {
+        if(field_28024_y > 0)
+        {
+            field_28024_y = 10;
+            return;
+        } else
+        {
+            inPortalHavreCube = true;
+            return;
+        }
+    }
+
     public InventoryPlayer inventory;
     public Container inventorySlots;
     public Container craftingInventory;
@@ -964,8 +978,11 @@ public abstract class EntityPlayer extends EntityLiving
     private ChunkCoordinates startMinecartRidingCoordinate;
     public int field_28024_y;
     protected boolean inPortal;
+    protected boolean inPortalHavreCube;
     public float timeInPortal;
+    public float timeInPortalHavreCube;
     public float prevTimeInPortal;
+    public float prevTimeInPortalHavreCube;
     private int damageRemainder;
     public EntityFish fishEntity;
 }

@@ -20,7 +20,7 @@ import org.lwjgl.opengl.GL11;
 //            RenderSorter, MovingObjectPosition, EntityPlayer, EnumMovingObjectType, 
 //            AxisAlignedBB, GuiIngame, SoundManager, EntityBubbleFX, 
 //            EffectRenderer, EntitySmokeFX, EntityNoteFX, EntityPortalFX, 
-//            EntityExplodeFX, EntityFlameFX, EntityLavaFX, EntityFootStepFX, 
+//            EntityExplodeFX, EntityLavaFX, EntityFootStepFX, 
 //            EntitySplashFX, EntityReddustFX, EntitySlimeFX, Item, 
 //            EntitySnowShovelFX, EntityHeartFX, ImageBufferDownload, StepSound, 
 //            ItemRecord, ItemStack
@@ -650,6 +650,9 @@ public class RenderGlobal
         {
             return;
         }
+        if(mc.theWorld.worldProvider.isHavreCubeWorld) {
+        	mc.theWorld.worldInfo.setWorldTime(18000);
+        }
         GL11.glDisable(3553 /*GL_TEXTURE_2D*/);
         Vec3D vec3d = worldObj.func_4079_a(mc.renderViewEntity, f);
         float f1 = (float)vec3d.xCoord;
@@ -675,6 +678,7 @@ public class RenderGlobal
         GL11.glEnable(3042 /*GL_BLEND*/);
         GL11.glBlendFunc(770, 771);
         RenderHelper.disableStandardItemLighting();
+
         float af[] = worldObj.worldProvider.calcSunriseSunsetColors(worldObj.getCelestialAngle(f), f);
         if(af != null)
         {
@@ -732,20 +736,25 @@ public class RenderGlobal
         tessellator.addVertexWithUV(f15, 100D, f15, 1.0D, 1.0D);
         tessellator.addVertexWithUV(-f15, 100D, f15, 0.0D, 1.0D);
         tessellator.draw();
-        f15 = 20F;
-        GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, renderEngine.getTexture("/terrain/moon.png"));
-        tessellator.startDrawingQuads();
-        tessellator.addVertexWithUV(-f15, -100D, f15, 1.0D, 1.0D);
-        tessellator.addVertexWithUV(f15, -100D, f15, 0.0D, 1.0D);
-        tessellator.addVertexWithUV(f15, -100D, -f15, 0.0D, 0.0D);
-        tessellator.addVertexWithUV(-f15, -100D, -f15, 1.0D, 0.0D);
-        tessellator.draw();
+        if(!mc.theWorld.worldProvider.isHavreCubeWorld) {
+            f15 = 20F;
+            GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, renderEngine.getTexture("/terrain/moon.png"));
+            tessellator.startDrawingQuads();
+            tessellator.addVertexWithUV(-f15, -100D, f15, 1.0D, 1.0D);
+            tessellator.addVertexWithUV(f15, -100D, f15, 0.0D, 1.0D);
+            tessellator.addVertexWithUV(f15, -100D, -f15, 0.0D, 0.0D);
+            tessellator.addVertexWithUV(-f15, -100D, -f15, 1.0D, 0.0D);
+            tessellator.draw();
+        }
         GL11.glDisable(3553 /*GL_TEXTURE_2D*/);
-        float f17 = worldObj.getStarBrightness(f) * f6;
-        if(f17 > 0.0F)
-        {
-            GL11.glColor4f(f17, f17, f17, f17);
-            GL11.glCallList(starGLCallList);
+
+        if(!mc.theWorld.worldProvider.isHavreCubeWorld) {
+	        float f17 = worldObj.getStarBrightness(f) * f6;
+	        if(f17 > 0.0F)
+	        {
+	            GL11.glColor4f(f17, f17, f17, f17);
+	            GL11.glCallList(starGLCallList);
+	        }
         }
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glDisable(3042 /*GL_BLEND*/);
@@ -768,6 +777,10 @@ public class RenderGlobal
     public void renderClouds(float f)
     {
         if(mc.theWorld.worldProvider.isNether)
+        {
+            return;
+        }
+        if(mc.theWorld.worldProvider.isHavreCubeWorld)
         {
             return;
         }

@@ -423,9 +423,9 @@ public final class ModLoader
         ((Map) (obj)).put(s1, Integer.valueOf(i));
     }
 
-    public static void AddRecipe(ItemStack itemstack, Object aobj[])
+    public static void AddRecipe(ItemStack itemStack, Object aobj[])
     {
-        CraftingManager.getInstance().addRecipe(itemstack, aobj);
+        CraftingManager.getInstance().addRecipe(itemStack, aobj);
     }
 
     public static void AddShapelessRecipe(ItemStack itemstack, Object aobj[])

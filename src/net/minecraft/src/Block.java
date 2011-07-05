@@ -87,7 +87,7 @@ public class Block
         return this;
     }
 
-    protected Block setLightValue(float f)
+    public Block setLightValue(float f)
     {
         lightValue[blockID] = (int)(15F * f);
         return this;

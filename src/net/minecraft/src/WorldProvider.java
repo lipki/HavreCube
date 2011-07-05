@@ -17,6 +17,7 @@ public abstract class WorldProvider
     {
         isNether = false;
         isHellWorld = false;
+        isHavreCubeWorld = false;
         field_6478_e = false;
         lightBrightnessTable = new float[16];
         worldType = 0;
@@ -123,6 +124,10 @@ public abstract class WorldProvider
 
     public static WorldProvider getProviderForDimension(int i)
     {
+        if(i == -2)
+        {
+            return new WorldProviderHavreCube();
+        }
         if(i == -1)
         {
             return new WorldProviderHell();
@@ -154,6 +159,7 @@ public abstract class WorldProvider
     public WorldChunkManager worldChunkMgr;
     public boolean isNether;
     public boolean isHellWorld;
+    public boolean isHavreCubeWorld;
     public boolean field_6478_e;
     public float lightBrightnessTable[];
     public int worldType;

@@ -4,6 +4,7 @@
 
 package net.minecraft.src;
 
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Random;
@@ -54,6 +55,11 @@ public class GuiIngame extends Gui
         if(f1 > 0.0F)
         {
             renderPortalOverlay(f1, k, l);
+        }
+        float f4 = mc.thePlayer.prevTimeInPortalHavreCube + (mc.thePlayer.timeInPortalHavreCube - mc.thePlayer.prevTimeInPortalHavreCube) * f;
+        if(f4 > 0.0F)
+        {
+            renderPortalOverlay(f4, k, l);
         }
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, mc.renderEngine.getTexture("/gui/gui.png"));
@@ -344,6 +350,37 @@ public class GuiIngame extends Gui
         float f2 = (float)(Block.portal.blockIndexInTexture / 16) / 16F;
         float f3 = (float)(Block.portal.blockIndexInTexture % 16 + 1) / 16F;
         float f4 = (float)(Block.portal.blockIndexInTexture / 16 + 1) / 16F;
+        Tessellator tessellator = Tessellator.instance;
+        tessellator.startDrawingQuads();
+        tessellator.addVertexWithUV(0.0D, j, -90D, f1, f4);
+        tessellator.addVertexWithUV(i, j, -90D, f3, f4);
+        tessellator.addVertexWithUV(i, 0.0D, -90D, f3, f2);
+        tessellator.addVertexWithUV(0.0D, 0.0D, -90D, f1, f2);
+        tessellator.draw();
+        GL11.glDepthMask(true);
+        GL11.glEnable(2929 /*GL_DEPTH_TEST*/);
+        GL11.glEnable(3008 /*GL_ALPHA_TEST*/);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+    }
+
+    private void renderPortalHavreCubeOverlay(float f, int i, int j)
+    {
+        if(f < 1.0F)
+        {
+            f *= f;
+            f *= f;
+            f = f * 0.8F + 0.2F;
+        }
+        GL11.glDisable(3008 /*GL_ALPHA_TEST*/);
+        GL11.glDisable(2929 /*GL_DEPTH_TEST*/);
+        GL11.glDepthMask(false);
+        GL11.glBlendFunc(770, 771);
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, f);
+        GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, mc.renderEngine.getTexture("/terrain.png"));
+        float f1 = (float)(mod_HavreCube.havreCubeIn.blockIndexInTexture % 16) / 16F;
+        float f2 = (float)(mod_HavreCube.havreCubeIn.blockIndexInTexture / 16) / 16F;
+        float f3 = (float)(mod_HavreCube.havreCubeIn.blockIndexInTexture % 16 + 1) / 16F;
+        float f4 = (float)(mod_HavreCube.havreCubeIn.blockIndexInTexture / 16 + 1) / 16F;
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         tessellator.addVertexWithUV(0.0D, j, -90D, f1, f4);

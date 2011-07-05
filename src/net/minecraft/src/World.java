@@ -2841,7 +2841,7 @@ public class World
     protected List worldAccesses;
     protected IChunkProvider chunkProvider;
     protected final ISaveHandler saveHandler;
-    protected WorldInfo worldInfo;
+    public WorldInfo worldInfo;
     public boolean findingSpawnPoint;
     private boolean allPlayersSleeping;
     public MapStorage field_28108_z;
