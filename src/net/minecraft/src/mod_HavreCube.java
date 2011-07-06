@@ -21,11 +21,11 @@ public class mod_HavreCube extends BaseMod {
 	
 	public mod_HavreCube() {
 		
-		havreCubeInTexturehcf = ModLoader.addOverride("/terrain.png", "/assets/hcf.png");
-		havreCubeInTexturehcb = ModLoader.addOverride("/terrain.png", "/assets/hcb.png");
-		havreCubeInTexturehcc = ModLoader.addOverride("/terrain.png", "/assets/hcc.png");
-		havreCubeInTexturehccd = ModLoader.addOverride("/terrain.png", "/assets/hccd.png");
-		havreCubeInTexturehccg = ModLoader.addOverride("/terrain.png", "/assets/hccg.png");
+		havreCubeInTexturehcf = ModLoader.addOverride("/terrain.png", "assets/hcf.png");
+		havreCubeInTexturehcb = ModLoader.addOverride("/terrain.png", "assets/hcb.png");
+		havreCubeInTexturehcc = ModLoader.addOverride("/terrain.png", "assets/hcc.png");
+		havreCubeInTexturehccd = ModLoader.addOverride("/terrain.png", "assets/hccd.png");
+		havreCubeInTexturehccg = ModLoader.addOverride("/terrain.png", "assets/hccg.png");
 		
 		havreCubeIn = new BlockHavreCubeIn(100).setBlockName("HavreCubeIn");
 		havreCubeOut = new BlockHavreCubeOut(101).setBlockName("HavreCubeOut").setLightValue(1.0F);

@@ -4,7 +4,7 @@ public class BlockHavreCubeOut extends BlockBreakable {
 	
 	public BlockHavreCubeOut(int i) {
 		
-		super(i, ModLoader.addOverride("/terrain.png", "/assets/havrecubeout.png"), Material.cloth, false);
+		super(i, ModLoader.addOverride("/terrain.png", "assets/havrecubeout.png"), Material.cloth, false);
 		
     }
 
